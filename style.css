@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Ruda:wght@400..900&display=swap");
 /* font-family: "Quattrocento", serif; */
 /* font-family: "Ruda", serif; */
@@ -65,10 +65,11 @@ header {
 }
 
 .main_section {
-  height: 87vh;
+  position: relative;
+  min-height: 87vh;
   background-image: url("./Assets/section/Pizza.png");
-  background-position: contain;
-  background-size: 100% 100%;
+  background-position: center;
+  background-size: cover;
   padding: 1rem;
 }
 .main_section::before {
@@ -79,7 +80,7 @@ header {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-  z-index: 1; /* Place it behind the text */
+  z-index: 1;
 }
 .main_text {
   width: 40%;
@@ -87,7 +88,7 @@ header {
   font-family: "Quattrocento", serif;
   margin-top: 5%;
   margin-left: 3%;
-  position: relative; /* Ensures it's above the overlay */
+  position: relative;
   z-index: 2;
   > h1 {
     font-weight: 700;
@@ -95,7 +96,7 @@ header {
     text-align: center;
     margin-top: 5%;
     word-spacing: 4px;
-    letter-spacing: 6px;
+    letter-spacing: 1px;
     z-index: 2;
   }
   > hr {
@@ -104,7 +105,7 @@ header {
     border: none;
     margin: 3rem;
     width: 80%;
-    position: relative; /* Ensures it's above the overlay */
+    position: relative;
     z-index: 2;
   }
   > p {
@@ -229,10 +230,10 @@ header {
   height: 100%;
   border-radius: 5px;
   object-fit: cover;
-  transition: transform 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s ease;
 }
 .dish_card:hover .img_box img {
-  transform: scale(1.2); /* Zoom effect */
+  transform: scale(1.08);
 }
 
 .carousel img {
@@ -384,5 +385,304 @@ footer {
   }
   > p {
     color: #ffff;
+  }
+}
+
+
+
+/* Animation polish */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.navbar {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  animation: navDrop 0.8s ease both;
+}
+
+.heading_logo h1 img {
+  border-radius: 50%;
+  filter: drop-shadow(0 0 18px rgba(242, 201, 76, 0.35));
+  animation: logoFloat 3.5s ease-in-out infinite;
+}
+
+.nav_links a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav_links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 2px;
+  background: #f2c94c;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav_links a:hover {
+  color: #f2c94c;
+}
+
+.nav_links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.social_media_icons img {
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.social_media_icons a:hover img {
+  filter: drop-shadow(0 0 12px rgba(242, 201, 76, 0.65));
+  transform: translateY(-4px) rotate(5deg) scale(1.08);
+}
+
+.main_section {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.main_section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 28% 38%, rgba(242, 201, 76, 0.2), transparent 28%),
+    linear-gradient(115deg, rgba(0, 0, 0, 0.25), transparent 58%);
+  animation: heroGlow 6s ease-in-out infinite alternate;
+}
+
+.main_text h1 {
+  animation: heroTitle 1s ease 0.15s both;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+.main_text hr {
+  transform-origin: left;
+  animation: lineGrow 0.9s ease 0.65s both;
+}
+
+.main_text p {
+  animation: heroText 0.9s ease 0.9s both;
+}
+
+.heading h2 {
+  animation: softPulse 4s ease-in-out infinite;
+}
+
+.heading hr {
+  box-shadow: 0 0 18px rgba(244, 12, 12, 0.55);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(45px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dish_card {
+  border-radius: 10px;
+  padding: 10px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.dish_card:hover {
+  background: linear-gradient(135deg, rgba(242, 201, 76, 0.13), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.45);
+  transform: translateY(-10px);
+}
+
+.img_box {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.img_box img,
+.about_image img,
+.carousel img,
+.img_grid img {
+  filter: saturate(1.08) contrast(1.03);
+}
+
+.about_image img {
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.38);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+.about_image:hover img {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: 0 28px 55px rgba(242, 201, 76, 0.18);
+}
+
+.carousel {
+  filter: drop-shadow(0 24px 35px rgba(0, 0, 0, 0.45));
+}
+
+.carousel img {
+  animation: imageDrift 9s ease-in-out infinite alternate;
+}
+
+.img_grid > div {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+}
+
+.img_grid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.img_grid > div:hover img {
+  filter: saturate(1.25) brightness(1.08);
+  transform: scale(1.08);
+}
+
+.icons_address img,
+.icons_number img,
+.mail img,
+.phone_2 img {
+  animation: iconPop 2.8s ease-in-out infinite;
+}
+
+.footer_details > img {
+  animation: scooterMove 3.2s ease-in-out infinite;
+}
+
+@keyframes navDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+@keyframes heroGlow {
+  from {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes heroTitle {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes heroText {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(242, 201, 76, 0);
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(242, 201, 76, 0.22);
+  }
+}
+
+@keyframes imageDrift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes iconPop {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.07);
+  }
+}
+
+@keyframes scooterMove {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
